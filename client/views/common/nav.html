@@ -16,7 +16,6 @@
           </li>
           {{#with currentUser}}
             <li class="{{activeClassByRoute 'problem'}}"><a class="green" href="{{pathFor 'problems'}}">Problems</a></li>
-            <li class="{{activeClassByRoute 'profile'}}"><a class="green" href="{{pathFor 'profile'}}">Profile</a></li>
           {{/with}}
           <li class="{{activeClassByRoute 'rules'}}"><a class="green" href="{{pathFor 'rules'}}">Rules</a></li>
           {{#if currentIsAdmin}}
