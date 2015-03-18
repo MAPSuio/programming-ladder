@@ -1,19 +1,17 @@
 <template name="home">
-    <div class="home col-md-12 col-lg-offset-1 col-lg-10">
-        <!--<img src="/knowit_logo_green_rgb.png" alt="Knowit">-->
+<div class="home col-md-12 col-lg-offset-2 col-lg-9">
+    <center>
+        <img class="splash" src="/spring.png" />
+    </center>
 
-        <div class="medals-container row">
-            {{#each users}}
-            <div class="col-xs-4 medal">
-                <figure>
-                    {{username}}
-                </figure>
-            </div>
-            {{/each}}
+    <div class="medals-container row">
+        {{#each users}}
+        <div class="col-xs-4 medal">
+            <figure>
+                {{username}}
+            </figure>
         </div>
-
-        <h4 class="lead text-center quote"><em>"D bli itj nå likar einn herre"</em>
-            <small>&mdash; Ukjent Knowiter</small>
-        </h4>
+        {{/each}}
     </div>
+</div>
 </template>

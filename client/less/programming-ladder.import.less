@@ -3,17 +3,25 @@ html {
   min-height: 100%;
 }
 
-@footer-height: 165px;
+@footer-height: 110px;
+@green:                 #5B9836;
 
 body {
   margin-bottom: @footer-height;
+  background-color: #5B9836;
+}
+
+img.splash {
+height: 300px;
+width: 800px;
+    margin-top: -21px;
 }
 
 body > footer {
-  color: #777;
   text-align: center;
   border-top: 1px solid #e5e5e5;
   padding: 20px 0;
+    color: #fff;
 
   position: absolute;
   bottom: 0;
@@ -155,7 +163,7 @@ form .editor {
 
 .stats-header {
   text-transform: uppercase;
-  color: #666;
+  color: #fff;
   font-size: 9pt;
 
 }
@@ -164,6 +172,22 @@ form .editor {
   font-size: 1.1em;
   font-weight: bold;
   height: 30px;
+color: #fff;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus
+{
+    color: @green;
+}
+
+.panel-body, .panel, .panel a
+{
+    color: @green;
+}
+
+.leaderboard
+{
+    color: @green;
 }
 
 .home {
@@ -226,11 +250,15 @@ form .editor {
   }
 }
 
+.list-group .list-group-item {
+    color: @green;
+}
+
 .list-group .list-group-item .row-content .least-content {
   position: absolute;
   right: 16px;
   top: 0px;
-  color: rgba(0, 0, 0, 0.54);
+  color: @green;
 }
 
 .delete-activity-item {

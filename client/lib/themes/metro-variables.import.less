@@ -12,12 +12,14 @@
 @gray:                   lighten(#000, 33.5%); // #555
 @gray-light:             lighten(#000, 60%);   // #999
 @gray-lighter:           lighten(#000, 90%); // #eee
+@green:                 #5B9836;
+@white:                 #fff;
 
-@brand-primary:         #2780E3;
-@brand-success:         #3FB618;
+@brand-primary:         @white;
+@brand-success:         lighten(@green, 10%);
 @brand-info:            #9954BB;
-@brand-warning:         #FF7518;
-@brand-danger:          #FF0039;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
 
 
 //== Scaffolding
@@ -25,9 +27,9 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #fff;
+@body-bg:               @green;
 //** Global text color on `<body>`.
-@text-color:            @gray-dark;
+@text-color:            @white;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -141,12 +143,12 @@
 
 @btn-font-weight:                normal;
 
-@btn-default-color:              #fff;
-@btn-default-bg:                 @gray-darker;
+@btn-default-color:              @green;
+@btn-default-bg:                 @white;
 @btn-default-border:             @btn-default-bg;
 
-@btn-primary-color:              @btn-default-color;
-@btn-primary-bg:                 @brand-primary;
+@btn-primary-color:              @white;
+@btn-primary-bg:                 @green;
 @btn-primary-border:             @btn-primary-bg;
 
 @btn-success-color:              @btn-default-color;
@@ -157,7 +159,7 @@
 @btn-info-bg:                    @brand-info;
 @btn-info-border:                @btn-info-bg;
 
-@btn-warning-color:              @btn-default-color;
+@btn-warning-color:              @white;
 @btn-warning-bg:                 @brand-warning;
 @btn-warning-border:             @btn-warning-bg;
 
@@ -178,7 +180,7 @@
 @input-bg-disabled:              @gray-lighter;
 
 //** Text color for `<input>`s
-@input-color:                    @text-color;
+@input-color:                    @green;
 //** `<input>` border color
 @input-border:                   #ccc;
 //** `<input>` border radius
@@ -210,20 +212,20 @@
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-@dropdown-bg:                    #fff;
+@dropdown-bg:                    darken(@green, 15%);
 //** Dropdown menu `border-color`.
-@dropdown-border:                rgba(0,0,0,.15);
+@dropdown-border:                transparent;
 //** Dropdown menu `border-color` **for IE8**.
 @dropdown-fallback-border:       #ccc;
 //** Divider color for between dropdown items.
 @dropdown-divider-bg:            #e5e5e5;
 
 //** Dropdown link text color.
-@dropdown-link-color:            @gray-dark;
+@dropdown-link-color:            @white;
 //** Hover color for dropdown links.
-@dropdown-link-hover-color:      #fff;
+@dropdown-link-hover-color:      darken(@dropdown-link-color, 10%);
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg:         @dropdown-link-active-bg;
+@dropdown-link-hover-bg:         darken(@green, 5%);
 
 //** Active dropdown menu item text color.
 @dropdown-link-active-color:     #fff;
@@ -342,13 +344,13 @@
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
 
-@navbar-default-color:             #fff;
-@navbar-default-bg:                @gray-darker;
-@navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+@navbar-default-color:             @green;
+@navbar-default-bg:                @white;
+@navbar-default-border:            @white;
 
 // Navbar links
-@navbar-default-link-color:                #fff;
-@navbar-default-link-hover-color:          #fff;
+@navbar-default-link-color:                @green;
+@navbar-default-link-hover-color:          darken(@navbar-default-link-color, 10%);
 @navbar-default-link-hover-bg:             darken(@navbar-default-bg, 10%);
 @navbar-default-link-active-color:         @navbar-default-link-hover-color;
 @navbar-default-link-active-bg:            @navbar-default-link-hover-bg;
@@ -357,7 +359,7 @@
 
 // Navbar brand label
 @navbar-default-brand-color:               @navbar-default-link-color;
-@navbar-default-brand-hover-color:         #fff;
+@navbar-default-brand-hover-color:         @navbar-default-link-hover-color;
 @navbar-default-brand-hover-bg:            none;
 
 // Navbar toggle
@@ -646,7 +648,7 @@
 //##
 
 //** Background color on `.list-group-item`
-@list-group-bg:                 #fff;
+@list-group-bg:                 @white;
 //** `.list-group-item` border color
 @list-group-border:             #ddd;
 //** List group border radius
@@ -689,11 +691,11 @@
 @panel-inner-border:          #ddd;
 @panel-footer-bg:             #f5f5f5;
 
-@panel-default-text:          @gray-dark;
+@panel-default-text:          @green;
 @panel-default-border:        #ddd;
 @panel-default-heading-bg:    #f5f5f5;
 
-@panel-primary-text:          #fff;
+@panel-primary-text:          @gray-dark;
 @panel-primary-border:        @brand-primary;
 @panel-primary-heading-bg:    @brand-primary;
 
@@ -825,7 +827,7 @@
 //** Horizontal offset for forms and lists.
 @component-offset-horizontal: 180px;
 //** Text muted color
-@text-muted:                  @gray-light;
+@text-muted:                  @white;
 //** Abbreviations and acronyms border color
 @abbr-border-color:           @gray-light;
 //** Headings small color
@@ -841,6 +843,6 @@
 //** Width of horizontal description list titles
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Horizontal line color.
-@hr-border:                   @gray-lighter;
+@hr-border:                   @white;
 
 

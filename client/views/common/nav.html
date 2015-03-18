@@ -7,27 +7,27 @@
           <span class="sr-only">Toggle navigation</span>
           <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand" href="{{pathFor 'home'}}">Programming Ladder</a>
+        <a class="navbar-brand green" href="{{pathFor 'home'}}">MAPS spring challenge</a>
       </div>
 
       <nav class="collapse navbar-collapse prog-navbar-collapse" role="navigation">
         <ul class="nav navbar-nav">
-          <li class="{{activeClassByRoute 'leaderboard'}}"><a href="{{pathFor 'leaderboard'}}">Leaderboard</a>
+          <li class="{{activeClassByRoute 'leaderboard'}}"><a class="green" href="{{pathFor 'leaderboard'}}">Leaderboard</a>
           </li>
           {{#with currentUser}}
-            <li class="{{activeClassByRoute 'problem'}}"><a href="{{pathFor 'problems'}}">Problems</a></li>
-            <li class="{{activeClassByRoute 'profile'}}"><a href="{{pathFor 'profile'}}">Profile</a></li>
+            <li class="{{activeClassByRoute 'problem'}}"><a class="green" href="{{pathFor 'problems'}}">Problems</a></li>
+            <li class="{{activeClassByRoute 'profile'}}"><a class="green" href="{{pathFor 'profile'}}">Profile</a></li>
           {{/with}}
-          <li class="{{activeClassByRoute 'rules'}}"><a href="{{pathFor 'rules'}}">Rules</a></li>
+          <li class="{{activeClassByRoute 'rules'}}"><a class="green" href="{{pathFor 'rules'}}">Rules</a></li>
           {{#if currentIsAdmin}}
             <li class="dropdown {{activeClassByRoute 'admin'}}">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle green" data-toggle="dropdown">Admin <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="{{activeClassByRoute 'adminProblems'}}"><a href="{{pathFor 'adminProblems'}}"><i
+              <li class="{{activeClassByRoute 'adminProblems'}}"><a class="green" href="{{pathFor 'adminProblems'}}"><i
                       class="fa fa-tasks hidden-xs"></i> Problems</a></li>
-              <li class="{{activeClassByRoute 'adminUsers'}}"><a href="{{pathFor 'adminUsers'}}"><i
+              <li class="{{activeClassByRoute 'adminUsers'}}"><a class="green" href="{{pathFor 'adminUsers'}}"><i
                       class="fa fa-users hidden-xs"></i> Users</a></li>
-              <li class="{{activeClassByRoute 'settings'}}"><a href="{{pathFor 'settings'}}"><i
+              <li class="{{activeClassByRoute 'settings'}}"><a class="green" href="{{pathFor 'settings'}}"><i
                       class="fa fa-cog hidden-xs"></i> Settings</a></li>
             </ul>
           </li>
