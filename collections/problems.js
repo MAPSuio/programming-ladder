@@ -7,6 +7,10 @@ ProblemsSchema = new SimpleSchema({
     description: {
         type: String
     },
+    htmlDescription: {
+        type: String,
+        optional: true
+    },
     solution: {
         type: String
     },
@@ -58,6 +62,10 @@ ProblemsSchema = new SimpleSchema({
             }
         }
     },
+    commentCount: {
+        type: Number,
+        optional: true
+    },
     answers: {
         type: [Object],
         defaultValue: []
@@ -65,12 +73,12 @@ ProblemsSchema = new SimpleSchema({
     'answers.$.userId': {
         type: String
     },
+    'answers.$.solved': {
+        type: Boolean
+    },
     'answers.$.score': {
         type: Number,
         min: 0
-    },
-    'answers.$.solved': {
-        type: Boolean
     }
 });
 
@@ -96,3 +104,18 @@ if (Meteor.isServer) {
         });
     });
 }
+
+Problems.before.insert(function (userId, doc) {
+    if (Meteor.isServer) {
+        doc.htmlDescription = marked(doc.description);
+        console.log(marked(doc.description));
+    }
+});
+
+Problems.before.update(function (userId, doc, fieldNames, modifier, options) {
+    // if body is being modified, update htmlBody too
+    if (Meteor.isServer && modifier.$set && modifier.$set.description) {
+        modifier.$set = modifier.$set || {};
+        modifier.$set.htmlDescription = marked(modifier.$set.description);
+    }
+});

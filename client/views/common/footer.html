@@ -1,10 +1,35 @@
 <template name="footer">
-  <footer class="footer">
-    <div class="container-fluid" align="center">
-      <p>Handcrafted with ♥</p>
-      <p>Powered by beer and <a href="https://www.meteor.com/">Meteor</a>.</p>
-      <p>Designed and built by a <a href="http://beta.knowitlabs.no/">Knowit Labs</a> team.</p>
-      <p>Shamelessly copied by <a href="http://maps-uio.no/">MAPS</a>.</p>
-    </div>
-  </footer>
+    <footer class="page-footer grey darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">This page is</h5>
+                    <ul>
+                        <li class="grey-text text-lighten-4">Handcrafted with ♥</li>
+                        <li class="grey-text text-lighten-4">Powered by beer and <a href="https://www.meteor.com/" class="grey-text text-lighten-3">Meteor</a>.</li>
+                        <li class="grey-text text-lighten-4">Designed and built by <a href="http://beta.knowitlabs.no/" class="grey-text text-lighten-3">Knowit Labs</a>.</li>
+                    </ul>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Navigation</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="{{pathFor 'home'}}">Home</a></li>
+                        <li><a class="grey-text text-lighten-3" href="{{pathFor 'leaderboard'}}">Leaderboard</a></li>
+                        {{#if currentUser}}
+                            <li><a class="grey-text text-lighten-3" href="{{pathFor 'problems'}}">Problems</a></li>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright grey darken-4">
+            <div class="container">
+                © 2015 Alexander Bjerkan - All Rights Reserved
+                <a class="grey-text text-lighten-4 right" href="https://twitter.com/knowitnorge">&nbsp;<i class="fa fa-twitter"></i></a>
+                <a class="grey-text text-lighten-4 right" href="http://www.linkedin.com/company/knowit">&nbsp;<i class="fa fa-linkedin"></i></a>
+                <a class="grey-text text-lighten-4 right" href="http://www.facebook.com/knowitnorge">&nbsp;<i class="fa fa-facebook-square"></i></a>
+                <a class="grey-text text-lighten-4 right" href="https://github.com/alexanbj/programming-ladder">&nbsp;<i class="fa fa-github-alt"></i></a>
+            </div>
+        </div>
+    </footer>
 </template>

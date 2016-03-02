@@ -41,6 +41,10 @@ Users = new SimpleSchema({
     solved: {
         type: Number,
         defaultValue: 0
+    },
+    lastSolved: {
+        type: Date,
+        optional: true
     }
 });
 

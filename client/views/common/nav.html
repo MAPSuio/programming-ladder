@@ -1,44 +1,58 @@
 <template name="nav">
-  <header class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse"
-                data-target=".prog-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand green" href="{{pathFor 'home'}}">MAPS spring challenge</a>
-      </div>
+    <ul id="admin-dropdown" class="dropdown-content">
+        <li><a href="{{pathFor 'adminProblems'}}">Problems</a></li>
+        <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+        <li><a href="{{pathFor 'settings'}}">Settings</a></li>
+    </ul>
 
-      <nav class="collapse navbar-collapse prog-navbar-collapse" role="navigation">
-        <ul class="nav navbar-nav">
-          <li class="{{activeClassByRoute 'leaderboard'}}"><a class="green" href="{{pathFor 'leaderboard'}}">Leaderboard</a>
-          </li>
-          {{#with currentUser}}
-            <li class="{{activeClassByRoute 'problem'}}"><a class="green" href="{{pathFor 'problems'}}">Problems</a></li>
-          {{/with}}
-          <li class="{{activeClassByRoute 'rules'}}"><a class="green" href="{{pathFor 'rules'}}">Rules</a></li>
-          {{#if currentIsAdmin}}
-            <li class="dropdown {{activeClassByRoute 'admin'}}">
-            <a href="#" class="dropdown-toggle green" data-toggle="dropdown">Admin <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li class="{{activeClassByRoute 'adminProblems'}}"><a class="green" href="{{pathFor 'adminProblems'}}"><i
-                      class="fa fa-tasks hidden-xs"></i> Problems</a></li>
-              <li class="{{activeClassByRoute 'adminUsers'}}"><a class="green" href="{{pathFor 'adminUsers'}}"><i
-                      class="fa fa-users hidden-xs"></i> Users</a></li>
-              <li class="{{activeClassByRoute 'settings'}}"><a class="green" href="{{pathFor 'settings'}}"><i
-                      class="fa fa-cog hidden-xs"></i> Settings</a></li>
-            </ul>
-          </li>
-          {{/if}}
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}}
-          {{#with currentUser}}
-          <p class="navbar-text score">Score: {{score}}</p>
-          {{/with}}
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <nav class="grey darken-4">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="{{pathFor 'home'}}" class="brand-logo"><img src="/knowit_symbol_white_rgb.png" alt="Knowit"></a>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="{{isActiveRoute regex='leaderboard'}}" href="{{pathFor 'leaderboard'}}">Leaderboard</a></li>
+                    {{#if currentUser}}
+                        <li><a class="{{isActiveRoute regex='problems'}}" href="{{pathFor 'problems'}}">Problems</a></li>
+                    {{/if}}
+                    {{#if isAdmin}}
+                        <li><a class="dropdown-button" href="#!" data-activates="admin-dropdown">Admin <i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                    {{/if}}
+                    {{#if currentUser}}
+                        <li><a href="#" class="signOut" title="Logout">Logout</a></li>
+                    {{else}}
+                        <li><a class="{{isActiveRoute regex='atSignIn'}}" href="{{pathFor 'atSignIn'}}">Sign in</a></li>
+                    {{/if}}
+                </ul>
+
+                <ul id="mobile-nav" class="side-nav">
+                    <li class="{{isActiveRoute regex='leaderboard'}}"><a href="{{pathFor 'leaderboard'}}">Leaderboard</a></li>
+                    {{#if currentUser}}
+                        <li class="{{isActiveRoute regex='problems'}}"><a href="{{pathFor 'problems'}}">Problems</a></li>
+                    {{/if}}
+                    {{#if isAdmin}}
+                        <li class="no-padding">
+                            <ul class="collapsible collapsible-accordion">
+                                <li>
+                                    <a class="collapsible-header">Admin<i class="mdi-navigation-arrow-drop-down"></i></a>
+                                    <div class="collapsible-body">
+                                        <li><a href="{{pathFor 'adminProblems'}}">Problems</a></li>
+                                        <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+                                        <li><a href="{{pathFor 'settings'}}">Settings</a></li>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{#if currentUser}}
+                        <li><a href="#" class="signOut" title="Logout">Logout</a></li>
+                    {{else}}
+                        <li class="{{isActiveRoute regex='atSignIn'}}"><a href="{{pathFor 'atSignIn'}}">Sign in</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
 </template>

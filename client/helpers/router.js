@@ -1,35 +1,16 @@
-//Global subscriptions. Not router specific, but since all the other subscriptions are here, whatever..
+//Global subscriptions. Not route specific
 Meteor.subscribe('currentUser');
-Meteor.subscribe('activityStream');
-// client side specific location. Probably shouldn't be here either
+Meteor.subscribe('settings');
+// client side specific location. Probably shouldn't be here
 ProblemStats = new Mongo.Collection('problemStats');
 
 Router.map(function() {
     this.route('home', {
-        path: '/',
-        waitOn: function() {
-            return Meteor.subscribe('leaderboard');
-        },
-        data: function() {
-
-            var toMedalOrder = function(users){
-              if (users && users.length > 2){
-                var tmp = users[0];
-                users[0] = users[1];
-                users[1] = tmp;
-                return users;
-              } else {
-                return users;
-              }
-
-            };
-            return {
-                users: toMedalOrder(Meteor.users.find({isAdmin:false}, {sort: {score: -1}, limit: 3}).fetch())
-            }
-        }
+        path: '/'
     });
 
     this.route('leaderboard', {
+        path: '/leaderboard',
         waitOn: function() {
             return Meteor.subscribe('leaderboard');
         }
@@ -39,43 +20,21 @@ Router.map(function() {
         path: '/problems',
         waitOn: function() {
             return Meteor.subscribe('problems');
-        },
-        onBeforeAction: function() {
-            var id;
-            if (Session.get('selectedProblemId')) {
-                id = Session.get('selectedProblemId');
-            } else if (this.ready()) {
-                id = Problems.findOne({}, {sort: {created: -1}})._id
-            }
-            if (id) {
-                Router.go('showProblem', {_id: id});
-            }
         }
     });
 
     this.route('showProblem', {
         path: '/problems/:_id',
         waitOn: function() {
-            return [Meteor.subscribe('problems'), Meteor.subscribe('problem', this.params._id), Meteor.subscribe('problemStats', this.params._id)];
+            return Meteor.subscribe('problem', this.params._id);
+        },
+        subscriptions: function() {
+            return Meteor.subscribe('problemStats', this.params._id);
         },
         data: function() {
             return Problems.findOne({_id: this.params._id});
-        },
-        onBeforeAction: function() {
-            Session.set('selectedProblemId', this.params._id);
-            this.next();
         }
     });
-
-    this.route('profile', {
-        path: '/users/profile',
-        data: function() {
-            return Meteor.user()
-        }
-    });
-
-
-    this.route('rules');
 
 
     // Admin stuff be here!
@@ -110,7 +69,7 @@ Router.map(function() {
     this.route('adminUsers', {
         path: '/admin/users',
         waitOn: function() {
-            return Meteor.subscribe('adminUsers');
+            return Meteor.subscribe('allUsersAdmin');
         },
         data: function() {
             return {
@@ -147,21 +106,25 @@ Router.map(function() {
 
 Router.configure({
     layoutTemplate: 'layout',
-    notFoundTemplate: 'notFound'
+    notFoundTemplate: 'not_found',
+    loadingTemplate: 'loading',
+    progressSpinner: false
 });
 
 
 Router._filters = {
-    isAdmin: function() {
-        if(!Meteor.user() || !Meteor.user().isAdmin) {
-            Router.go('home');
+    isAdmin: function () {
+        if(!this.ready()) return;
+        if(!isAdmin()){
+            this.render(getTemplate('no_rights'));
         } else {
             this.next();
         }
     }
-}
+};
 
 var filters = Router._filters;
 
 Router.onBeforeAction(filters.isAdmin, {only: ['settings', 'adminUsers', 'adminProblems', 'editProblem', 'newProblem']});
+Router.plugin('ensureSignedIn', {only: ['problems', 'showProblem']});
 Router.onBeforeAction('dataNotFound');
